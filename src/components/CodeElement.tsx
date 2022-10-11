@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { RenderElementProps } from "slate-react"
 import { cx, css } from '@emotion/css'
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Editor } from "slate"
 
 const isMarkActive = (editor: Editor, format: string) => {

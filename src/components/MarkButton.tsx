@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Editor } from "slate"
 import { useSlate } from "slate-react"
 import { Button, Icon } from "./CommonComponents"

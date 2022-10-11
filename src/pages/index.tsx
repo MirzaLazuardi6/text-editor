@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NextPage } from 'next'
 import React, { useCallback, useMemo } from 'react'
 import { createEditor } from 'slate'
@@ -5,7 +6,6 @@ import { withHistory } from 'slate-history'
 import { Slate, Editable, withReact, RenderElementProps, RenderLeafProps } from 'slate-react'
 import { TextElement } from '../components/CodeElement'
 import { Leaf } from '../components/Leaf'
-import { CustomElement } from '../utils/helper/text-editor/ElementSelector'
 import { cx, css } from '@emotion/css'
 import isHotkey from 'is-hotkey'
 import { HOTKEYS } from '../utils/const/CommonConst'
@@ -16,41 +16,7 @@ import { MarkButton } from '../components/MarkButton'
 import Head from 'next/head'
 import { MarkButtonConfig } from '../utils/config/MarkButtonConfig'
 import { BlockButtonConfig } from '../utils/config/BlockButtonConfig'
-
-
-const initialValue: CustomElement[] = [
-    {
-        type: 'paragraph',
-        children: [
-            { text: 'Hi my name is ' }, 
-            { text: 'Mirza Lazuardi ', bold: true }, 
-            { text: 'you can call me ' }, 
-            { text: 'Mirza', underline: true },
-        ],
-    },
-    {
-        type: 'paragraph',
-        children: [
-            { text: 'I am a ' },
-            { text: 'Software Engineer ', code: true },
-            { text: 'specialized in ' },
-            { text: 'Front End Development', bold: true, underline: true },
-        ],
-    },
-    {
-        type: 'paragraph',
-        children: [
-            { text: 'My favorite quote is ' }
-        ],
-    },
-    {
-        type: 'block-quote',
-        children: [
-            { text: '"The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far. The sciences, each straining in its own direction, have hitherto harmed us little; but some day the piecing together of dissociated knowledge will open up such terrifying vistas of reality, and of our frightful position therein, that we shall either go mad from the revelation or flee from the light into the peace and safety of a new dark age."' },
-            { text: '  -H.P Lovecraft' }
-        ],
-    }
-];
+import { initialTemplate } from '../utils/config/template'
 
 const TextEditor: NextPage = () => {
     const renderElement = useCallback((props: RenderElementProps) => <TextElement {...props} />, [])
@@ -68,7 +34,7 @@ const TextEditor: NextPage = () => {
             </Head>
             <Slate 
                 editor={editor} 
-                value={initialValue}
+                value={initialTemplate}
             >
                 <Toolbar>
                     { MarkButtonConfig && MarkButtonConfig.map(button => 
